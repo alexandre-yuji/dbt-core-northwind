@@ -1,0 +1,174 @@
+version: 2
+
+sources:
+  - name: dbtcorenorthwind
+    database: dbtcorenorthwind
+    schema: public
+    tables:
+      - name: customers
+        description: Raw customer data.
+      - name: order_details
+        description: Raw order details data.
+      - name: orders
+        description: Raw orders  data.
+      - name: products
+        description: Raw products data.
+
+models:
+  - name: stg_customers
+    description: Staging model for customer data.
+    columns:
+      - name: customer_id
+        description: Unique identifier for each customer.
+        tests:
+          - unique
+          - not_null
+      - name: company_name
+        description: Company name.
+        tests:
+          - not_null
+      - name: contact_name
+        description: Contact name.
+        tests:
+          - not_null
+      - name: contact_title
+        description: Contact title.
+      - name: address
+        description: Address.
+        tests:
+          - not_null
+      - name: city
+        description: City.
+        tests:
+          - not_null
+      - name: region
+        description: Region.
+      - name: postal_code
+        description: Postal code.
+      - name: country
+        description: Country.
+        tests:
+          - not_null
+      - name: phone
+        description: Phone.
+        tests:
+          - not_null
+      - name: fax
+        description: Fax.
+  - name: stg_order_details
+    description: Staging model for order details data.
+    columns:
+      - name: order_id
+        description: Unique identifier for each order.
+      - name: product_id
+        description: Unique identifier for each product.
+      - name: unit_price
+        description: Unit price.
+        tests:
+          - not_null
+      - name: quantity
+        description: Quantity.
+        tests:
+          - not_null
+      - name: discount
+        description: Discount.
+        tests:
+          - not_null
+  - name: stg_orders
+    description: Staging model for order data.
+    columns:
+      - name: order_id
+        description: Unique identifier for each order.
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+        description: Unique identifier for each customer.
+        tests:
+          - not_null
+      - name: employee_id
+        description: Unique identifier for each employee.
+        tests:
+          - not_null
+      - name: order_date
+        description: Order date.
+        tests:
+          - not_null
+      - name: required_date
+        description: Required date.
+        tests:
+          - not_null
+      - name: shipped_date
+        description: Shipped date.
+      - name: ship_via
+        description: Ship via.
+        tests:
+          - not_null
+      - name: freight
+        description: Freight.
+        tests:
+          - not_null
+      - name: ship_name
+        description: Ship name.
+        tests:
+          - not_null
+      - name: ship_address
+        description: Ship address.
+        tests:
+          - not_null
+      - name: ship_city
+        description: Ship city.
+        tests:
+          - not_null
+      - name: ship_region
+        description: Ship region.
+      - name: ship_postal_code
+        description: Ship postal code.
+      - name: ship_country
+        description: Ship country.
+        tests:
+          - not_null
+  - name: stg_products
+    description: Staging model for products data.
+    columns:
+      - name: product_id
+        description: Unique identifier for each product.
+        tests:
+          - unique
+          - not_null
+      - name: product_name
+        description: Product name.
+        tests:
+          - not_null
+      - name: supplier_id
+        description: Unique identifier for each supplier.
+        tests:
+          - not_null
+      - name: category_id
+        description: Unique identifier for each category.
+        tests:
+          - not_null
+      - name: quantity_per_unit
+        description: Quantity per unit.
+        tests:
+          - not_null
+      - name: unit_price
+        description: Unit price.
+        tests:
+          - not_null
+      - name: units_in_stock
+        description: Units in stock.
+        tests:
+          - not_null
+      - name: units_on_order
+        description: Units in order.
+        tests:
+          - not_null
+      - name: reorder_level
+        description: Reorder level.
+        tests:
+          - not_null
+      - name: discontinued
+        description: Discontinued.
+        tests:
+          - not_null

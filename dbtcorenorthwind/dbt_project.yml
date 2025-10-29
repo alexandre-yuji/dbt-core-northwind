@@ -31,12 +31,12 @@ clean-targets:         # directories to be removed by `dbt clean`
 # files using the `{{ config(...) }}` macro.
 models:
   dbtcorenorthwind:
-    raw:
+    staging:
       materialized: view
       +tags: "tabela_critica"
       +docs:
         node_color: "#cd7f32"  # Cor bronze para a camada raw
-    staging:
+    intermediate:
       materialized: view
       +docs:
         node_color: "#c0c0c0"  # Cor prata para a camada staging

@@ -1,19 +1,3 @@
 -- models/staging/stg_order_details.sql
 
-with source as (
-    select * from {{ ref('raw_order_details')}}
-),
-
-filtered as (
-
-    select
-        order_id,
-        product_id,
-        unit_price,
-        quantity,
-        discount
-    from
-        source
-)
-
-select * from filtered
+select * from {{ source('dbtcorenorthwind', 'order_details') }}

@@ -1,4 +1,4 @@
--- models/view_receitas_acumuladas.sql
+-- models/mart/mart_revenue_accumulated.sql
 
 {{ config(
     schema='gold',
@@ -11,9 +11,9 @@ with receitas_mensais as (
         extract(month from orders.order_date) as mes,
         sum(order_details.unit_price * order_details.quantity * (1.0 - order_details.discount)) as receita_mensal
     from
-        {{ ref('stg_orders') }} as orders
+        {{ ref('int_orders') }} as orders
     inner join
-        {{ ref('stg_order_details') }} as order_details on orders.order_id = order_details.order_id
+        {{ ref('int_order_details') }} as order_details on orders.order_id = order_details.order_id
     group by
         extract(year from orders.order_date),
         extract(month from orders.order_date)

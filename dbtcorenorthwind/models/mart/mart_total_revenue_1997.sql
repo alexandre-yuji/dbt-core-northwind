@@ -1,4 +1,4 @@
--- models/reporting/report_total_revenues_1997.sql
+-- models/mart/report_total_revenues_1997.sql
 
 -- CONFIG
 
@@ -11,12 +11,12 @@
 
 with sources_orders as (
     select order_id, order_date
-    from {{ ref('stg_orders') }}
+    from {{ ref('int_orders') }}
 ),
 
 sources_orders_details as (
     select *
-    from {{ ref('stg_order_details') }}
+    from {{ ref('int_order_details') }}
 ),
 
 -- REGRA DE NEGOCIO
